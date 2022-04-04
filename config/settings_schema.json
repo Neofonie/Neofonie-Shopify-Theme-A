@@ -1,11 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Dawn",
-    "theme_version": "3.0.0",
-    "theme_author": "Shopify",
+    "theme_name": "Neofonie Theme A",
+    "theme_version": "0.0.1",
+    "theme_author": "Neofonie",
     "theme_documentation_url": "https://help.shopify.com/en/manual/online-store/themes",
-    "theme_support_url": "https://support.shopify.com/"
+    "theme_support_url": "https://www.neofonie.de/"
   },
   {
     "name": "t:settings_schema.colors.name",

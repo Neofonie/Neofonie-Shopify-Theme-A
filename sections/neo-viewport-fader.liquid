@@ -1,0 +1,264 @@
+{%- style -%}
+    #shopify-section-neo-viewport-fader {
+        overflow: hidden;
+        height: calc(100vh - var(--announcement-bar-height));
+        max-height: 100vh;
+    }
+    #shopify-section-neo-viewport-fader .fade-item img {
+        max-width: 100%;
+    }
+    #shopify-section-neo-viewport-fader .fade-item {
+        position: relative;
+        height: 100%;
+    }
+    #shopify-section-neo-viewport-fader .fade-item::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width:100%;
+        background: linear-gradient(0deg, rgb(10 10 10 / 59%) 0%, rgba(0,0,0,0.48503151260504207) 35%, rgba(0,212,255,0) 100%);
+    }
+    #shopify-section-neo-viewport-fader .fade-item--content-grid {
+        position: absolute;
+        top: 10%;
+        left: 5%;
+        width: 90%;
+        height: 80%;
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+    }
+    #shopify-section-neo-viewport-fader .fade-item--content.bright {
+        color: white;
+    }
+    #shopify-section-neo-viewport-fader .fade-item--content.dark {
+        color: black;
+    }
+    #shopify-section-neo-viewport-fader .fade-item--content .fade-item--content-text,
+    #shopify-section-neo-viewport-fader .fade-item--content .fade-item--content-headline {
+        color: inherit;
+    }
+    #shopify-section-neo-viewport-fader .fade-item--content .fade-item--button {
+      display: block;
+      margin-top: 20px;
+      padding: 5px 20px;
+      background-color: white;
+      text-decoration: none;
+      transition: background-color 400ms ease, color 400ms ease;
+    }
+    #shopify-section-neo-viewport-fader .fade-item--content.dark .fade-item--button {
+      background-color: white;
+      color:black;
+    }
+    #shopify-section-neo-viewport-fader .fade-item--content.bright .fade-item--button {
+      background-color: black;
+      color:white;
+    }
+    #shopify-section-neo-viewport-fader .fade-item--content.dark .fade-item--button:hover {
+      background-color: black;
+      color:white;
+    }
+    #shopify-section-neo-viewport-fader .fade-item--content.bright .fade-item--button:hover {
+      background-color: white;
+      color:black;
+    }
+{%- endstyle -%}
+
+<neofader-component>
+    {% for block in section.blocks %}
+        {% case block.type %}
+        {% when 'fadeItem' %}
+            <div class="fade-item" {{ block.shopify_attributes }}>
+                {%- if block.settings.image -%}
+                    {{ block.settings.image | image_url: width: 2048 | image_tag }}
+                {%- endif -%}
+
+                <div class="fade-item--content-grid" style="justify-content:{{ block.settings.content_position_hor }}; align-items:{{ block.settings.content_position_vert }};">
+                    <div class="fade-item--content {{ block.settings.text_color }}">
+                      <{{ block.settings.heading_type }} class="fade-item--content-headline">{{ block.settings.heading }}</{{ block.settings.heading_type }}>
+                      <p class="fade-item--content-text {{ block.settings.text_size }}">{{ block.settings.text }}</p>
+                      {%- if block.settings.buttonText -%}
+                        <a class="fade-item--button" href="{{ block.settings.buttonUrl }}" target="{{ block.settings.buttonTarget }}">{{ block.settings.buttonText }}</a>
+                      {%- endif -%}
+                    </div>
+                </div>
+            </div>
+        {% endcase %}
+    {% endfor %}
+</neofader-component>
+
+<script src="{{ 'neo-viewport-fader.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Neo Viewport Fader",
+  "tag": "section",
+  "class": "neo-viewport-fader",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Fader"
+    }
+  ],
+  "blocks": [
+     {
+       "name": "Fade Item",
+       "type": "fadeItem",
+       "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "text",
+                "id": "heading",
+                "label": "Headline"
+            },
+            {
+              "type": "select",
+              "id": "heading_type",
+              "options": [
+                {
+                  "value": "h1",
+                  "label": "H1"
+                },
+                {
+                  "value": "h2",
+                  "label": "H2"
+                },
+                {
+                  "value": "h3",
+                  "label": "H3"
+                },
+                {
+                  "value": "h4",
+                  "label": "H4"
+                },
+                {
+                  "value": "h5",
+                  "label": "H5"
+                },
+                {
+                  "value": "h6",
+                  "label": "H6"
+                }
+              ],
+              "default": "h4",
+              "label": "Headline size"
+            },
+            {
+                "type": "text",
+                "id": "text",
+                "label": "Text"
+            },
+            {
+              "type": "select",
+              "id": "text_size",
+              "options": [
+                {
+                  "value": "small",
+                  "label": "Small"
+                },
+                {
+                  "value": "medium",
+                  "label": "Medium"
+                },
+                {
+                  "value": "large",
+                  "label": "Large"
+                }
+              ],
+              "default": "medium",
+              "label": "Text size"
+            },
+            {
+              "type": "select",
+              "id": "text_color",
+              "options": [
+                {
+                  "value": "bright",
+                  "label": "Bright"
+                },
+                {
+                  "value": "dark",
+                  "label": "Dark"
+                }
+              ],
+              "default": "bright",
+              "label": "Text color"
+            },
+            {
+              "type": "select",
+              "id": "content_position_vert",
+              "options": [
+                {
+                    "value": "flex-start",
+                    "label": "top"
+                  },
+                  {
+                    "value": "center",
+                    "label": "middle"
+                  },
+                  {
+                    "value": "flex-end",
+                    "label": "bottom"
+                  }
+              ],
+              "default": "center",
+              "label": "Content position vertically"
+            },
+            {
+              "type": "select",
+              "id": "content_position_hor",
+              "options": [
+                {
+                  "value": "flex-start",
+                  "label": "left"
+                },
+                {
+                  "value": "center",
+                  "label": "middle"
+                },
+                {
+                  "value": "flex-end",
+                  "label": "right"
+                }
+              ],
+              "default": "center",
+              "label": "Content position horizontally"
+            },
+            {
+                "type": "text",
+                "id": "buttonText",
+                "label": "Button Text"
+            },
+            {
+                "type": "url",
+                "id": "buttonUrl",
+                "label": "Button Url"
+            },
+            {
+              "type": "select",
+              "id": "buttonTarget",
+              "options": [
+                {
+                  "value": "_blank",
+                  "label": "New tab"
+                },
+                {
+                  "value": "_self",
+                  "label": "Same tab"
+                }
+              ],
+              "default": "_blank",
+              "label": "URL Target"
+            }
+       ]
+     }
+   ]
+}
+{% endschema %}

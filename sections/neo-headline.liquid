@@ -1,0 +1,50 @@
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'heading' %}
+      <h2 class="{{section.class}} {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+        {{ block.settings.heading | escape }}
+      </h2>
+  {% endcase %}
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Neo Headline",
+  "class": "neo-headline",
+  "blocks": [
+    {      
+      "type": "heading",
+      "name": "t:sections.rich-text.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Talk about your brand",
+          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.rich-text.blocks.heading.settings.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.rich-text.blocks.heading.settings.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.rich-text.blocks.heading.settings.heading_size.options__3.label"
+            }
+          ],
+          "default": "h1",
+          "label": "t:sections.rich-text.blocks.heading.settings.heading_size.label"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

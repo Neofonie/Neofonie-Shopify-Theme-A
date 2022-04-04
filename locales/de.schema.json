@@ -717,6 +717,9 @@
         "logo": {
           "label": "Logo-Bild"
         },
+        "logo_secondary": {
+          "label": "Logo-Bild sekundaer"
+        },
         "logo_width": {
           "unit": "Pixel",
           "label": "Breite des benutzerdefinierten Logos"
