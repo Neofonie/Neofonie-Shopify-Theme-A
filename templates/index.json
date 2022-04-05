@@ -1,5 +1,29 @@
 {
   "sections": {
+    "neo_viewport_fader":{
+      "type": "neo-viewport-fader",
+      "blocks": {
+        "fadeItem": {
+          "type": "fadeItem",
+          "settings": {
+            "heading": "Headline!",
+            "heading_type": "h1",
+            "text": "Irgendein text",
+            "content_position_vert": "flex-end",
+            "content_position_hor": "flex-start",
+            "buttonText": "Button",
+            "buttonUrl": "shopify://collections/all",
+            "buttonTarget": "_blank"
+          }
+        }
+      },
+      "block_order": [
+        "fadeItem"
+      ],
+      "settings": {
+        "title": "Fader"
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -119,6 +143,7 @@
     }
   },
   "order": [
+    "neo_viewport_fader",
     "image_banner",
     "rich_text",
     "featured_collection",
