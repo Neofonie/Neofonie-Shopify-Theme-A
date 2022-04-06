@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "section-neo-viewport-fader.css",
+	"sources": [
+		"../_prebuilt-assets/scss/sections/section-neo-viewport-fader.scss"
+	],
+	"sourcesContent": [
+		".neo-viewport-fader {\n    overflow: hidden;\n    max-height: 200vh;\n}"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,mBAAmB,AAAC,CAChB,QAAQ,CAAE,MAAM,CAChB,UAAU,CAAE,KAAK,CACpB"
+}

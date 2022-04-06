@@ -1,0 +1,22 @@
+{
+  "name": "neoshopify_theme_a",
+  "description": "",
+  "version": "0.0.1",
+  "scripts": {
+    "compile-styles": "node-sass --output-style compressed --source-map true --source-map-contents true --precision 6 --recursive -o assets/ _prebuilt-assets/scss/*",
+    "compile-js": "tsc",
+    "serve": "npm run compile-styles && npm run compile-js && shopify theme serve"
+  },
+  "devDependencies": {
+    "node-sass": "^7.0.1",
+    "typescript": "^4.6.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neofonie/Neofonie-Shopify-Theme-A.git"
+  },
+  "author": "Neofonie",
+  "bugs": {
+    "url": "https://github.com/Neofonie/Neofonie-Shopify-Theme-A/issues"
+  }
+}
